@@ -39,7 +39,7 @@ namespace Rake_Counter.MVVM.ViewModel
             RakeCounterVM = new RakeCounterViewModel();
             HandCollectorVM = new HandCollectorViewModel();
             CurrentView = RakeCounterVM;
-
+            
             RakeCounterViewCommand = new RelayCommand(o =>
             {
                 CurrentView = RakeCounterVM;
