@@ -1,0 +1,25 @@
+﻿<Application x:Class="Rake_Counter.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Rake_Counter"
+             xmlns:viewModel="clr-namespace:Rake_Counter.MVVM.ViewModel"
+             xmlns:view="clr-namespace:Rake_Counter.MVVM.View">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Theme/MenuButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/TextBoxTheme.xaml"/>
+                <ResourceDictionary Source="Theme/GeneralButtonTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type viewModel:RakeCounterViewModel}">
+                <view:RakeCounterView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:HandCollectorViewModel}">
+                <view:HandCollectorView/>
+            </DataTemplate>
+            
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

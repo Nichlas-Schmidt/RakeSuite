@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="Rake_Counter.MVVM.View.RakeCounterView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Rake_Counter.MVVM.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Border BorderThickness="1"
+            BorderBrush="Black">
+        <StackPanel>
+            <TextBlock Text="Rake Counter" 
+                   Foreground="White" 
+                   FontSize="28" 
+                   HorizontalAlignment="Center"
+                   Margin="0 0 0 20"/>
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Center">
+                <StackPanel>
+                    <Label Content="Ratio"
+                           Foreground="White"
+                           FontFamily="/Fonts/#Poppins"/>
+                    <TextBox Style="{StaticResource ModernTextBox}" Text="50"></TextBox>
+                </StackPanel>
+                <Button Width="Auto" 
+                        Height="Auto" 
+                        Content="Upload handhistory file"
+                        Style="{StaticResource GeneralButtonTheme}"
+                        ></Button>
+            </StackPanel>
+            
+        </StackPanel>
+    </Border>
+</UserControl>
