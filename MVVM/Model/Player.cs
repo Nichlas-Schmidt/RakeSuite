@@ -9,14 +9,14 @@ namespace Rake_Counter.MVVM.Model
 
     internal class Player
     {
-        public float Amount { get; set; }
+        public double Amount { get; set; }
 
-        public float FGAmount { get; set; }
+        public double FGAmount { get; set; }
 
         public string Username { get; set; }
 
 
-        public Player(float amount, string username, float ratio)
+        public Player(double amount, string username, double ratio)
         {
             Amount = amount;
             Username = username;

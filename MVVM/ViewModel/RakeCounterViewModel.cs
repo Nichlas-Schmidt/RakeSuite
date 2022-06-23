@@ -8,11 +8,14 @@ using Rake_Counter.Core;
 using Rake_Counter.Core.Toolbox;
 using System.Collections.ObjectModel;
 using System.Windows;
+using Microsoft.Win32;
 
 namespace Rake_Counter.MVVM.ViewModel
 {
     internal class RakeCounterViewModel : ObservableObject
     {
+
+        RakeCounter rc = new RakeCounter();
 
         private ObservableCollection<Player> _players;
 
@@ -25,9 +28,9 @@ namespace Rake_Counter.MVVM.ViewModel
         }
 
 
-        private float _ratio = 50;
+        private double _ratio = 50;
 
-        public float Ratio
+        public double Ratio
         {
             get { return _ratio; }
             set { _ratio = value;
@@ -44,14 +47,30 @@ namespace Rake_Counter.MVVM.ViewModel
         {
             UploadCommand = new RelayCommand(o =>
             {
-                Players?.Clear();
+                //Players?.Clear();
 
-                Players = new ObservableCollection<Player>();
-                Players.Add(new Player(5000, "User1", Ratio));
-                Players.Add(new Player(3000, "User2", Ratio));
-                List<Player> ordered = Players.OrderByDescending(x => x.Amount).ToList();
-                Players.Clear();
-                ordered.ForEach(x => Players.Add(x));
+                //Players = new ObservableCollection<Player>();
+                //Players.Add(new Player(5000, "User1", Ratio));
+                //Players.Add(new Player(3000, "User2", Ratio));
+                //List<Player> ordered = Players.OrderByDescending(x => x.Amount).ToList();
+                //Players.Clear();
+                //ordered.ForEach(x => Players.Add(x));
+                OpenFileDialog fileDialog = new OpenFileDialog();
+                bool? response = fileDialog.ShowDialog();
+                if (response == true)
+                {
+                    Players?.Clear();
+                    string filepath = fileDialog.FileName;
+                    UserMapping userValue = rc.Calculate(filepath);
+                    Players = new ObservableCollection<Player>();
+                    foreach(var user in userValue)
+                    {
+                        Player p = new Player(user.Value, user.Key, Ratio);
+                        Players.Add(p);
+                    }
+                }
+
+
             });
 
             RefreshRatioCommand = new RelayCommand(o =>
