@@ -9,6 +9,7 @@ using Rake_Counter.Core.Toolbox;
 using System.Collections.ObjectModel;
 using System.Windows;
 using Microsoft.Win32;
+using System.Globalization;
 
 namespace Rake_Counter.MVVM.ViewModel
 {
@@ -32,8 +33,9 @@ namespace Rake_Counter.MVVM.ViewModel
 
         public double Ratio
         {
-            get { return _ratio; }
-            set { _ratio = value;
+            get { return _ratio; } 
+            set {
+                _ratio = value;
                 OnPropertyChanged();
                 
             }
@@ -59,15 +61,17 @@ namespace Rake_Counter.MVVM.ViewModel
                 bool? response = fileDialog.ShowDialog();
                 if (response == true)
                 {
-                    Players?.Clear();
+                    Players = new ObservableCollection<Player>();
                     string filepath = fileDialog.FileName;
                     UserMapping userValue = rc.Calculate(filepath);
-                    Players = new ObservableCollection<Player>();
                     foreach(var user in userValue)
                     {
                         Player p = new Player(user.Value, user.Key, Ratio);
                         Players.Add(p);
                     }
+                    List<Player> ordered = Players.OrderByDescending(x => x.Amount).ToList();
+                    Players.Clear();
+                    ordered.ForEach(x => Players.Add(x));
                 }
 
 
@@ -75,7 +79,7 @@ namespace Rake_Counter.MVVM.ViewModel
 
             RefreshRatioCommand = new RelayCommand(o =>
             {
-                List<Player> ordered = Players.ToList();
+                List<Player> ordered = Players?.ToList();
                 Players?.Clear();
 
 

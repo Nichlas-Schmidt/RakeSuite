@@ -34,23 +34,28 @@
             </StackPanel>
 
             <StackPanel VerticalAlignment="Bottom" Margin="0 20 0 0" ScrollViewer.CanContentScroll="False">
-                <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10" Height="200">
-                    <DataGrid AutoGenerateColumns="False"
-                              ColumnWidth="*" 
-                              CanUserAddRows="False" 
-                              AlternatingRowBackground="Gray" 
-                              IsReadOnly="True" 
-                              ItemsSource="{Binding Players}">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding Username}" Header="Username"/>
-                            <DataGridTextColumn Binding="{Binding Amount}" Header="Amount"/>
-                            <DataGridTextColumn Binding="{Binding FGAmount}" Header="Amount / Ratio">
-                            </DataGridTextColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10" Height="200" Width="Auto">
+                    <ListView BorderThickness="0" ItemsSource="{Binding Players}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsSynchronizedWithCurrentItem="False">
+                        <ListView.View>
+                            <GridView ColumnHeaderContainerStyle="{StaticResource rakeTable}">
+                                <GridViewColumn Header="Username" DisplayMemberBinding="{Binding Username}"/>
+                                <GridViewColumn Header="Amount" DisplayMemberBinding="{Binding Amount}"/>
+                                <GridViewColumn Header="FG" DisplayMemberBinding="{Binding FGAmount}"/>
+                            </GridView>
+                        </ListView.View>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="Focusable" Value="False"/>
+                                <Setter Property="IsHitTestVisible" Value="False"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="FontFamily" Value="/Fonts/#Poppins"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
                 </ScrollViewer>
             </StackPanel>
-
         </StackPanel>
     </Border>
 </UserControl>

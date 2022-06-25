@@ -11,6 +11,7 @@
                 <ResourceDictionary Source="Theme/TextBoxTheme.xaml"/>
                 <ResourceDictionary Source="Theme/GeneralButtonTheme.xaml"/>
                 <ResourceDictionary Source="Theme/ListViewTheme.xaml"/>
+                <ResourceDictionary Source="Theme/GridViewTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type viewModel:RakeCounterViewModel}">
