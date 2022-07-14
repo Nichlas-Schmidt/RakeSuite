@@ -31,6 +31,10 @@ namespace Rake_Counter.Core.Toolbox
 
         public void Collect()
         {
+            string logFilePath = "output.txt";
+            if (File.Exists(logFilePath)) { File.Delete(logFilePath); }
+            if (!File.Exists(logFilePath)) { File.Create(logFilePath).Dispose(); }
+            StreamWriter sw = new StreamWriter(logFilePath, true);
             StringBuilder sb = new StringBuilder(65535);
             IntPtr handle = FindWindow(null, "Instant Hand History");
             SetForegroundWindow(handle);
@@ -48,7 +52,7 @@ namespace Rake_Counter.Core.Toolbox
                 {
                     previous = txt.Current.Name;
                     tryCount = 0;
-                    hands.Add(txt.Current.Name);
+                    sw.Write(txt.Current.Name + "\n\n\n");
                     SendArrowDown(level5);
                 }
                 else
@@ -58,15 +62,7 @@ namespace Rake_Counter.Core.Toolbox
                 Thread.Sleep(250);
 
             }
-            string logFilePath = "output.txt";
-
-            if (File.Exists(logFilePath)) { File.Delete(logFilePath); }
-            if (!File.Exists(logFilePath)) { File.Create(logFilePath).Dispose(); }
-
-            using (StreamWriter sw = new StreamWriter(logFilePath, true))
-            {
-                hands.ForEach(o => sw.Write(o + "\n\n\n"));
-            }
+            sw.Close();
         }
 
 
