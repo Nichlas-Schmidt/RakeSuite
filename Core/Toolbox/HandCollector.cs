@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -38,9 +39,9 @@ namespace Rake_Counter.Core.Toolbox
             StringBuilder sb = new StringBuilder(65535);
             IntPtr handle = FindWindow(null, "Instant Hand History");
             SetForegroundWindow(handle);
-            IntPtr level1 = FindWindowEx(handle, IntPtr.Zero, "PokerStarsListViewClass", string.Empty);
-            IntPtr level5 = FindWindowEx(level1, IntPtr.Zero, "PokerStarsListClass", string.Empty);
-            IntPtr textElement = FindWindowEx(level1, IntPtr.Zero, "PokerStarsViewClass", string.Empty);
+            IntPtr level1 = FindWindowEx(handle, IntPtr.Zero, "FlutterOnlinePokerListViewClass", string.Empty);
+            IntPtr level5 = FindWindowEx(level1, IntPtr.Zero, "FlutterOnlinePokerListClass", string.Empty);
+            IntPtr textElement = FindWindowEx(level1, IntPtr.Zero, "FlutterOnlinePokerViewClass", string.Empty);
             AutomationElement txt = AutomationElement.FromHandle(textElement);
             string previous = "";
             List<string> hands = new List<string>();
